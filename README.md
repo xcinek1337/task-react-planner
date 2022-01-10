@@ -11,7 +11,7 @@ Tym razem będziemy wykorzystywać bibliotekę React do zbudowania prostej bazy 
 
 Szczególną uwagę należy zwrócić na kompozycje (czyli podział na mniejsze komponenty), odpowiednie umiejscowienie i wykorzystanie `state` w celu komunikacji poszczególnych komponentów ze sobą poprzez `props`.
 
-Dane będziemy przechowywać na lokalnym API, wykorzystując gotowe rozwiązanie [json-server](https://github.com/typicode/json-server). Wspomniane rozwiązania zainstalujemy dzięki [npm](<https://pl.wikipedia.org/wiki/Npm_(manager_pakiet%C3%B3w)>) więc musimy mieć w systemie [Node.js](https://nodejs.org) w wersji co najmniej 10.16.
+Dane będziemy przechowywać na lokalnym API, wykorzystując gotowe rozwiązanie [json-server](https://github.com/typicode/json-server). Wspomniane rozwiązania zainstalujemy dzięki [npm](<https://pl.wikipedia.org/wiki/Npm_(manager_pakiet%C3%B3w)>) więc musimy mieć w systemie [Node.js](https://nodejs.org).
 
 Jeśli mamy API to będziemy chcieli wykorzystywać `fetch` do pobierania i zapisywania danych.
 
@@ -27,10 +27,10 @@ Na początek musimy przygotować nasze miejsce pracy. Projekt jest mały więc n
 
 ### Create React App
 
-Wykorzystamy paczkę npm-ową w celu skonfigurowania sobie React-a. Jeśli mamy node.js w wersji równej lub wyższej niż 10.16 oraz npm >= 5.2 to wystarczy, że uruchomisz
+Wykorzystamy paczkę npm-ową w celu skonfigurowania sobie React-a. Jeśli mamy node.js w wersji równej lub wyższej niż 14 oraz npm >= 5.2 to wystarczy, że uruchomisz
 
 ```javascript
-npx create-react-app@3 .
+npx create-react-app@5 .
 ```
 
 Znak `.` oznacza, że struktura aplikacji zostanie utworzona w obecnej lokalizacji. Spora część z tych elementów nie będzie przez Ciebie wykorzystywana, ale na chwilę obecną się tym nie przejmuj.
@@ -52,6 +52,8 @@ git remote -v
 
 Jeśli w konsoli zobaczysz adres zawierający Twój login to oznacza, że możemy bez obaw `push`-ować nasze zmiany na GitHub-a.
 
+> **Zwróć uwagę również, że plik README.md, w którym był opis zadania zmienił nazwę na README.old.md. Obecnie pod starą nazwą znajdują się informacje dot. create-react-app** 
+
 Aby uruchomić lokalny serwer, który będzie automatycznie odświeżał nasza stronę po każdej zmianie jest dostępny pod komendą
 
 ```javascript
@@ -67,7 +69,7 @@ Tą paczkę będziemy isntalować globalnie dlatego warto mieść uprawnienia ad
 W terminalu wpisujemy komendę:
 
 ```
-npm install -g json-server@0.16
+npm install -g json-server@0.17
 ```
 
 Po instalacji powinniśmy mieć dostęp do informacji o zainstalowanej wersji
