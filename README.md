@@ -35,7 +35,7 @@ npx create-react-app@5 .
 
 Znak `.` oznacza, że struktura aplikacji zostanie utworzona w obecnej lokalizacji. Spora część z tych elementów nie będzie przez Ciebie wykorzystywana, ale w tej chwili się tym nie przejmuj.
 
-**Uwaga!** Instalacja wszystkich zależności może trochę potrwać, dlatego uzbrój się w cierpliwość. Nie muszę chyba wspominać, że dostęp do Internetu jest niezbędny, aby instalować pakiety :)
+> **Uwaga!** Instalacja wszystkich zależności może trochę potrwać, dlatego uzbrój się w cierpliwość. Nie muszę chyba wspominać, że dostęp do Internetu jest niezbędny, aby instalować pakiety :)
 
 Jeśli nie jesteś pewny, jaką wersją aplikacji posiadasz, sprawdzisz to za pomocą flagi `-v`.
 
@@ -62,6 +62,8 @@ npm start
 ```
 
 > **Uwaga!** Jeśli nasza strona ma działać, webpack zawsze musi być uruchomiony.
+
+> **Przypomnienie:** create-react-app domyślnie korzysta z `<React.StrictMode/>`, dlatego od wersji 18 Reacta w trybie deweloperskim możesz zauważyć, iż kod umieszczony w metodzie .componentDidMount() [uruchamia się dwa razy](https://stackoverflow.com/a/71755316).
 
 ### JSON Server – przypomnienie
 
