@@ -23,7 +23,7 @@ Jeśli mamy API, to będziemy chcieli wykorzystać metodę `.fetch()` do pobiera
 
 ## Niezbędne narzędzia
 
-Musimy przygotować nasze miejsce pracy. Projekt jest mały, więc na początku wykorzystamy gotowe rozwiązania, aby nie tracić czasu na konfigurację. Najważniejsze jest działające [MVP](http://www.biznesowerewolucje.com/mvp-minimum-viable-product-praktycznie/).
+Musimy przygotować nasze miejsce pracy. Projekt jest mały, więc na początku wykorzystamy gotowe rozwiązania, aby nie tracić czasu na konfigurację. Najważniejsze jest działające [MVP]([http://www.biznesowerewolucje.com/mvp-minimum-viable-product-praktycznie/](https://startup.pfr.pl/pl/aktualnosci/mvp-co-jest-i-jakie-sa-alternatywy-co-oznacza-map-i-slc/)).
 
 ### Create React App
 
