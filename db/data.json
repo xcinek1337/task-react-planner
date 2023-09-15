@@ -1,0 +1,13 @@
+{
+	"meetings": [
+		{
+			"firstName": "Jan",
+			"lastName": "Kowalski",
+			"email": "jan@kowalski.not",
+			"date": "2022-01-01",
+			"theme": "Jak zrobic miliony",
+			"time": "10:00",
+			"id": 1
+		}
+	]
+}
