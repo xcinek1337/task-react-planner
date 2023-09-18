@@ -1,13 +1,120 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+		'Droid Sans', 'Helvetica Neue', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+html {
+	background-color: #89cff0;
+}
+#root {
+	height: 100vh;
+}
+.container__app {
+	display: flex;
+	height: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	width: 100%;
+}
+.section__form {
+	display: flex;
+	align-items: flex-start;
+	height: 100%;
+	width: 30%;
+}
+.meet__form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: auto;
+	padding: 15px;
+	width: 100%;
+	border: 3px solid grey;
+	border-radius: 15px;
+}
+.meet__h1 {
+	text-transform: uppercase;
+}
+.meet__label {
+	display: flex;
+	flex-direction: column;
+	padding-bottom: 10px;
+	font-size: 18px;
+	font-weight: 500;
+}
+.meet__input {
+	background-color: #e0e5e76b;
+	border: 1px sollid grey;
+	border-radius: 5px;
+}
+.meet__btn-form {
+	margin: 10px 0;
+	padding: 7px 10px;
+	border: 2px solid grey;
+	border-radius: 10px;
+	text-align: center;
+	font-weight: 500;
+	font-size: 18px;
+	background-color: #220e2467;
+	cursor: pointer;
+}
+
+/* ######################### meetings ######################## */
+.section__meetings {
+	/* border: 2px solid red; */
+	width: 100%;
+}
+.meet__li-elem {
+	border: 2px solid black;
+	list-style: none;
+	padding: 10px;
+	margin: 10px 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.meet__alert {
+	color: red;
+	padding-right: 50px;
+}
+
+.meet__about-div {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	margin-right: 20px;
+}
+
+.meet__about {
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.meet__info-div {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+}
+
+.meet__btn-li {
+	border-radius: 5px;
+	padding: 5px 10px;
+	font-weight: 600;
+	cursor: pointer;
+}
+.meet__btn-done {
+	margin-left: 50px;
+	background-color: greenyellow;
+}
+.meet__btn-delete {
+	margin-left: 10px;
+	background-color: tomato;
 }
