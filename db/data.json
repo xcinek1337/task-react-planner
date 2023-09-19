@@ -1,24 +1,3 @@
 {
-  "meetings": [
-    {
-      "firstName": "Marcin",
-      "lastName": "Chodkowski",
-      "email": "xcinek1337@wp.pl",
-      "date": "2023-09-19",
-      "topic": "TOPICLALAA",
-      "time": "15:15",
-      "id": 2,
-      "hoursToMeeting": "4"
-    },
-    {
-      "firstName": "Marcin",
-      "lastName": "Chodkowski",
-      "email": "woaaaaaaajownik@wp.pl",
-      "date": "2023-09-20",
-      "topic": "aaaa",
-      "time": "09:00",
-      "id": 3,
-      "hoursToMeeting": "22"
-    }
-  ]
+	"meetings": []
 }

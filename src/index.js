@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import Meetings from './Meetings';
+import Meetings from './components/Meetings';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

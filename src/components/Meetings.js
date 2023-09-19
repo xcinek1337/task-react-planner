@@ -1,12 +1,11 @@
 import React, { Fragment } from 'react';
 
-import MeetingForm from './components/MeetingForm';
-import MeetingListView from './components/MeetingListView';
+import MeetingForm from './MeetingForm';
+import MeetingListView from './MeetingListView';
 
-import { get, create, remove, update } from './components/apiProvider';
+import { get, create, remove, update } from '../providers/apiProvider';
 
 const MEETINGS_API = '/meetings';
-const oneHour = 3600000;
 
 class Meetings extends React.Component {
 	state = {
@@ -18,8 +17,6 @@ class Meetings extends React.Component {
 				meetings: meetings,
 			});
 		});
-
-		this.intervalId = setInterval(this.timeUpdate, oneHour);
 	}
 	componentWillUnmount() {
 		clearInterval(this.intervalId);
@@ -50,21 +47,7 @@ class Meetings extends React.Component {
 
 		update(MEETINGS_API, id, { isDone: true });
 	};
-	timeUpdate = () => {
-		// musze dostac aktualna godzine i date i pozniej to jakos odjemowac od siebie
-		const { meetings } = this.state;
-
-		const updatedMeetings = meetings.map(meeting => {
-			console.log(meeting.hoursToMeeting);
-			if (meeting.hoursToMeeting > 0) {
-				meeting.hoursToMeeting -= 1;
-			}
-
-			return meeting;
-		});
-
-		this.setState({ meetings: updatedMeetings });
-	};
+	
 	updateAPI() {
 		get(MEETINGS_API).then(updatedMeetings => {
 			this.setState({

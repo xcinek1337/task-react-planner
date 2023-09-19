@@ -2,6 +2,7 @@ import React from 'react';
 import DatePicker from 'react-datepicker';
 import { format } from 'date-fns';
 import 'react-datepicker/dist/react-datepicker.css';
+import { validator } from '../providers/validator';
 
 class MeetingForm extends React.Component {
 	initialState = {
@@ -13,7 +14,7 @@ class MeetingForm extends React.Component {
 			topic: '',
 			time: '',
 			id: '',
-			hoursToMeeting: '',
+			minsToMeeting: '',
 		},
 		selectedDate: null,
 		errors: {},
@@ -69,12 +70,13 @@ class MeetingForm extends React.Component {
 		const timeToMeet = this.timeToMeet();
 		const formDataWithTimeToMeet = {
 			...this.state.formData,
-			hoursToMeeting: timeToMeet,
+			minsToMeeting: timeToMeet,
 		};
 
-		this.resetForm();
+		// catching errors from validator
+		const errors = validator(formDataWithTimeToMeet, this.formFields);
 
-		const errors = this.validateForm();
+		
 		if (Object.keys(errors).length === 0) {
 			this.props.onSubmit(formDataWithTimeToMeet);
 			this.resetForm();
@@ -112,29 +114,10 @@ class MeetingForm extends React.Component {
 		const currentDate = new Date();
 		if (selectedDate) {
 			const timeDifference = this.state.selectedDate - currentDate;
-			const hoursDifference = timeDifference / (1000 * 60 * 60);
+			const minutesDiffrence = timeDifference / (1000 * 60);
 
-			return hoursDifference.toFixed();
+			return minutesDiffrence.toFixed();
 		}
-	};
-	validateForm = () => {
-		const { formData } = this.state;
-		const errors = {};
-
-		this.formFields.forEach(field => {
-			const value = formData[field.name];
-
-	
-			if (field.required && value.trim() === '') {
-				errors[field.name] = `Field ${field.label} is required`;
-			}
-			
-			if (field.pattern && !new RegExp(field.pattern).test(value)) {
-				errors[field.name] = `Field  ${field.label} contains invalid characters or doesn't match with email pattern`;
-			}
-		});
-
-		return errors;
 	};
 
 	render() {
