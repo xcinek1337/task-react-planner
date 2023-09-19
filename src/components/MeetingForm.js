@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 import 'react-datepicker/dist/react-datepicker.css';
 
 class MeetingForm extends React.Component {
-	state = {
+	initialState = {
 		formData: {
 			firstName: '',
 			lastName: '',
@@ -16,7 +16,53 @@ class MeetingForm extends React.Component {
 			hoursToMeeting: '',
 		},
 		selectedDate: null,
+		errors: {},
 	};
+
+	state = { ...this.initialState };
+
+	formFields = [
+		{
+			label: 'Name:',
+			type: 'text',
+			name: 'firstName',
+			pattern: null,
+			required: true,
+		},
+		{
+			label: 'Surname:',
+			type: 'text',
+			name: 'lastName',
+			pattern: null,
+			required: true,
+		},
+		{
+			label: 'Mail (contact):',
+			type: 'text',
+			name: 'email',
+			pattern: '^[\\w\\-.]+@([\\w\\-]+\\.)+[\\w\\-]{2,4}$',
+			required: true,
+		},
+		{
+			label: 'Meeting topic:',
+			type: 'text',
+			name: 'topic',
+			pattern: null,
+			required: true,
+		},
+		{
+			label: 'Date',
+			type: 'date',
+			name: 'date',
+			pattern: null,
+			required: true,
+		},
+	];
+
+	resetForm = () => {
+		this.setState({ ...this.initialState });
+	};
+
 	submitForm = e => {
 		e.preventDefault();
 
@@ -26,21 +72,15 @@ class MeetingForm extends React.Component {
 			hoursToMeeting: timeToMeet,
 		};
 
-		this.props.onSubmit(formDataWithTimeToMeet);
+		this.resetForm();
 
-		this.setState({
-			formData: {
-				firstName: '',
-				lastName: '',
-				email: '',
-				date: '',
-				topic: '',
-				time: '',
-				id: '',
-				hoursToMeeting: '',
-			},
-			selectedDate: null,
-		});
+		const errors = this.validateForm();
+		if (Object.keys(errors).length === 0) {
+			this.props.onSubmit(formDataWithTimeToMeet);
+			this.resetForm();
+		} else {
+			this.setState({ errors });
+		}
 	};
 
 	handleTextChange = e => {
@@ -77,65 +117,64 @@ class MeetingForm extends React.Component {
 			return hoursDifference.toFixed();
 		}
 	};
+	validateForm = () => {
+		const { formData } = this.state;
+		const errors = {};
+
+		this.formFields.forEach(field => {
+			const value = formData[field.name];
+
+	
+			if (field.required && value.trim() === '') {
+				errors[field.name] = `Field ${field.label} is required`;
+			}
+			
+			if (field.pattern && !new RegExp(field.pattern).test(value)) {
+				errors[field.name] = `Field  ${field.label} contains invalid characters or doesn't match with email pattern`;
+			}
+		});
+
+		return errors;
+	};
 
 	render() {
+		const { errors } = this.state;
+
 		return (
 			<section className='section__form'>
 				<form className='meet__form' onSubmit={this.submitForm}>
 					<h1 className='meet__h1'>planner</h1>
-					<label className='meet__label'>
-						Name:
-						<input
-							className='meet__input'
-							type='text'
-							name='firstName'
-							value={this.state.formData.firstName}
-							onChange={this.handleTextChange}
-						/>
-					</label>
-					<label className='meet__label'>
-						Surname:
-						<input
-							className='meet__input'
-							value={this.state.formData.lastName}
-							type='text'
-							name='lastName'
-							onChange={this.handleTextChange}
-						/>
-					</label>
-					<label className='meet__label'>
-						mail (contact):
-						<input
-							className='meet__input'
-							value={this.state.formData.email}
-							type='text'
-							name='email'
-							onChange={this.handleTextChange}
-						/>
-					</label>
-					<label className='meet__label'>
-						meeting topic:
-						<input
-							className='meet__input'
-							value={this.state.formData.topic}
-							type='text'
-							name='topic'
-							onChange={this.handleTextChange}
-						/>
-					</label>
-					<label className='meet__label'>
-						Date:
-						<DatePicker
-							className='meet__input'
-							selected={this.state.selectedDate}
-							onChange={this.handleDateChange}
-							dateFormat='yyyy-d-M [HH:mm]'
-							showTimeInput
-							timeFormat='HH:mm'
-							timeIntervals={15}
-							timeCaption='Godzina'
-						/>
-					</label>
+
+					{this.formFields.map(field => (
+						<div key={field.name}>
+							<label className='meet__label'>
+								{field.label}
+								{field.type === 'date' ? (
+									<DatePicker
+										className='meet__input'
+										selected={this.state.selectedDate}
+										onChange={this.handleDateChange}
+										dateFormat='yyyy-d-M [HH:mm]'
+										showTimeInput
+										timeFormat='HH:mm'
+										timeIntervals={15}
+										timeCaption='Godzina'
+									/>
+								) : (
+									<input
+										className='meet__input'
+										type={field.type}
+										name={field.name}
+										value={this.state.formData[field.name]}
+										onChange={this.handleTextChange}
+									/>
+								)}
+							</label>
+							{/* krotka ocena warunkowa vvv ciekawy zapis, na poczatku mylil mnie z ifem w ktorym dwa warunki musza byc spelnione, a to dziala w ten sposob ze jesli pierwwszy element(po lewej stronie) jest true to wykonuje kod po operatorze "&&" */}
+							{errors[field.name] && <span className='error-message'>{errors[field.name]}</span>}
+							{/* {errors[field.name] ? <span className='error-message'>{errors[field.name]}</span> : null} */}
+						</div>
+					))}
 					<input className='meet__btn-form' type='submit' value='Set meeting' />
 				</form>
 			</section>

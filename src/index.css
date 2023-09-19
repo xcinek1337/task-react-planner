@@ -65,6 +65,10 @@ html {
 	background-color: #220e2467;
 	cursor: pointer;
 }
+.error-message {
+	color: rgb(186, 37, 146);
+	font-size: 16px;
+}
 
 /* ######################### meetings ######################## */
 .section__meetings {

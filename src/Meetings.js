@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import MeetingForm from './components/MeetingForm';
 import MeetingListView from './components/MeetingListView';
@@ -41,8 +41,6 @@ class Meetings extends React.Component {
 					...meeting,
 					isDone: true,
 				};
-			} else {
-				return meeting;
 			}
 		});
 
@@ -53,9 +51,11 @@ class Meetings extends React.Component {
 		update(MEETINGS_API, id, { isDone: true });
 	};
 	timeUpdate = () => {
+		// musze dostac aktualna godzine i date i pozniej to jakos odjemowac od siebie
 		const { meetings } = this.state;
 
 		const updatedMeetings = meetings.map(meeting => {
+			console.log(meeting.hoursToMeeting);
 			if (meeting.hoursToMeeting > 0) {
 				meeting.hoursToMeeting -= 1;
 			}
@@ -77,10 +77,10 @@ class Meetings extends React.Component {
 		const { meetings } = this.state;
 
 		return (
-			<frameElement className='container__app'>
+			<div className='container__app'>
 				<MeetingForm onSubmit={this.createMeeting} />
 				<MeetingListView meetings={meetings} isDone={this.meetingDone} onDelete={this.deleteMeeting} />
-			</frameElement>
+			</div>
 		);
 	}
 }
