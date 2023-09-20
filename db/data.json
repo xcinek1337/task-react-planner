@@ -1,3 +1,14 @@
 {
-	"meetings": []
+  "meetings": [
+    {
+      "firstName": "Marcin",
+      "lastName": "Chodkowski",
+      "email": "xcinek1337@wp.pl",
+      "date": "2023-09-20",
+      "topic": "aaaa",
+      "time": "12:12",
+      "id": 1,
+      "minsToMeeting": "160"
+    }
+  ]
 }

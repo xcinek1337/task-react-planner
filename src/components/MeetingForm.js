@@ -2,7 +2,7 @@ import React from 'react';
 import DatePicker from 'react-datepicker';
 import { format } from 'date-fns';
 import 'react-datepicker/dist/react-datepicker.css';
-import { validator } from '../providers/validator';
+import { validator } from '../helpers/validator';
 
 class MeetingForm extends React.Component {
 	initialState = {
@@ -76,7 +76,6 @@ class MeetingForm extends React.Component {
 		// catching errors from validator
 		const errors = validator(formDataWithTimeToMeet, this.formFields);
 
-		
 		if (Object.keys(errors).length === 0) {
 			this.props.onSubmit(formDataWithTimeToMeet);
 			this.resetForm();
